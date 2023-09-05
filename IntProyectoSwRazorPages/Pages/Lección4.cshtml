@@ -1,0 +1,71 @@
+﻿@page "/jscl4"
+@model IntProyectoSwRazorPages.Pages.Lección4Model
+@{
+}
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <h1>Lección 4 - Creación de objetos con DOM</h1>
+    <form>
+        <label>
+            Actividad:
+        </label>
+        <input id="textInput" type="text" /> <input id="btnAgregar" type="button" value="Agregar" /> <br />
+        <select size="10"></select>
+    </form>
+    <script>
+           //createElement
+           //createTextNode
+           //createComment
+
+           //let inputt= document.createElement("INPUT");
+            //inputt.value="Hola";
+            //inputt.type="button";
+            //document.querySelector("form").append(inputt);
+
+           ///Buscar el select
+           //Buscar el input text
+           ///Crear un listener click al boton
+           //Validar el input del texto
+           ///Crear un option
+           //solocar el texto en el option
+           ///Agregar el option al select 
+           //borrar el texto del input
+
+
+           ///Primera unidad para el proyecto(hacer el api)
+           //Planificacion- diagrama de base de datos -requerimientos -prototipo para el fin de este mes 29 sep
+           
+           //Segunda unidad
+           //Diseño de la aplicación 27 de octubre 
+
+           //Tercera unidad
+           //Vistas funcionando 24 de noviebre
+
+           //Cuarta unidad
+           //Aplicacion publicada PWA 8 de Diciembre
+
+       const select=document.querySelector("select");
+       const text = document.querySelector("#textInput");
+       document.getElementById("btnAgregar").addEventListener("click", function(){
+           if(text.value)
+           {
+             let option= document.createElement("OPTION");
+             option.textContent=text.value;
+             select.append(option);
+             text.value=null;
+           }
+          else
+          {
+              text.style.outlineColor="red";
+              text.setCustomValidity("Ecriba la actividad para continuar");
+              text.reportValidity();
+          }
+       });
+
+
+    </script>
+</body>
+</html>
