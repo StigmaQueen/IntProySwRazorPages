@@ -1,0 +1,99 @@
+﻿@page "/jscl5"
+@model IntProyectoSwRazorPages.Pages.Lección5Model
+@{
+}
+<html>
+<head>
+    <title>
+        Lección 5. Tablas con DOM
+    </title>
+    <style>
+
+        table {
+            width: 250px;
+            margin: auto;
+            border-collapse: collapse;
+        }
+
+
+            table td
+            {
+                border: 1px solid black;
+                height: 50px;
+            }
+
+        .selected
+        {
+            background-color: hotpink;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lección 5. Tablas con DOM</h1>
+    <table>
+        <tr>
+
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+
+        </tr>
+        <tr>
+
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+
+        </tr>
+        <tr>
+
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+
+        </tr>
+        <tr>
+
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+
+        </tr>
+        <tr>
+
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+
+        </tr>
+    </table>
+    <script>
+        const tabla = document.querySelector("table");
+        tabla.addEventListener("click", function (event) {
+            if (event.target.tagName == "TD")
+            {
+                let celda = event.target;
+                let papa = celda.parentNode;
+
+                let encendido = papa.querySelector(".selected");
+
+                if (encendido)
+                {
+                    encendido.classList.remove("selected");
+                }
+                celda.classList.add("selected");
+            }
+        });
+    </script>
+</body>
+</html>
