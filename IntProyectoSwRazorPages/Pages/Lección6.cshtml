@@ -1,0 +1,60 @@
+﻿@page "/jscl6"
+@model IntProyectoSwRazorPages.Pages.Lección6Model
+@{
+
+}
+
+<html>
+<head>
+    <title></title>
+
+</head>
+<body>
+    <h1>
+        Lección 6.Mover objetos
+    </h1>
+    <style>
+        select {
+            width: 150px;
+        }
+    </style>
+
+    <form>
+        <input type="text" id="texto" /> <input type="button" value="+" /><br />
+        <select size="10"></select>
+        <input type="button" value=">>" />
+        <input type="button" value="<<" />
+        <select size="10"></select>
+    </form>
+    <script>
+        const form = document.querySelector("form");
+        const text = form.querySelector("#texto");
+        const selects = form.getElementsByTagName("SELECT");
+
+        form.addEventListener("click", function (event) {
+            if (event.target.type && event.target.type == "button") {
+                let btn = event.target
+                if (btn.value == "+" && text.value) 
+                {
+
+                    let o = document.createElement.("OPTION");
+                    o.textContent=text.value;
+                    //selects[0].append(o);
+                    //text.ariaValueMax="";
+
+                    //en el caso de los selects hay un metodo add
+                    selects[0].add(o);
+                    text.value = "";
+                }
+                else
+                {
+                    text.style.outlineColor = "red";
+                    text.setCustomValidity("Ecriba la actividad para continuar");
+                    text.reportValidity();
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
