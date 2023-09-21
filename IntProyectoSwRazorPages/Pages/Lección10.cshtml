@@ -98,8 +98,8 @@
 
     <div class="modal">
         <form class="formAgregar">
-            <input type="text" placeholder="Número de control" />
-            <input type="text" placeholder="Nombre" />
+            <input name="numControl" type="text" placeholder="Número de control" required pattern="\d{2}1[A-Z][EC0DM]\d{3}" />
+            <input name="nombre" type="text" placeholder="Nombre" required/>
             <input type="submit" value="Agregar" />
             <input type="button" value="Cancelar" />
 
@@ -131,6 +131,21 @@
         document.getElementById("btnNuevo").addEventListener("click", function(){
             formAgg.parentElement.style.display="block";
         })
+
+        document.body.addEventListener("click",function(e){
+            if (e.target.tagName == "INPUT" && (e.target.value == "Cancelar" || e.target.value=="No")) {
+              e.target.form.reset();
+              e.target.form.parentElement.style.display="none";
+           }
+        });
+        document.addEventListener("submit", function(e){
+
+            e.preventDefault();
+            let form=e.target;
+            if(form.classList.includes("formAgregar")){
+
+            }
+        });
     </script>
 
 </body>
