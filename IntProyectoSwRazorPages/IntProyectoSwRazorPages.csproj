@@ -10,4 +10,8 @@
     <None Include="wwwroot\css\ejercicio1.css" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\encuesta\" />
+  </ItemGroup>
+
 </Project>
