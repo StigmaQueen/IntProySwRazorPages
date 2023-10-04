@@ -10,15 +10,19 @@
 <body>
     <main>
         <h1>Encuesta de Satisfacción</h1>
+        <p id="loader">
+            <img height="50" src="https://www.superiorlawncareusa.com/wp-content/uploads/2020/05/loading-gif-png-5.gif" />
+        </p>
+
         <p>
             ¿Para qué sirve hacer encuestas de satisfacción del cliente?
         </p>
         <div class="escala">
-            <img class="muymalo" src="img/bueno.png" />
-            <img class="malo" src="img/excelente.png" />
-            <img class="regular" src="img/regular.png" />
-            <img class="bueno" src="img/malo.png" />
-            <img class="excelente" src="img/muymalo.png" />
+            <img data-valor="1" class="muymalo" src="img/bueno.png" />
+            <img data-valor="2" class="malo" src="img/excelente.png" />
+            <img data-valor="3" class="regular" src="img/regular.png" />
+            <img data-valor="4" class="bueno" src="img/malo.png" />
+            <img data-valor="5" class="excelente" src="img/muymalo.png" />
             <label>Muy malo</label>
             <label>Malo</label>
             <label>Regular</label>
