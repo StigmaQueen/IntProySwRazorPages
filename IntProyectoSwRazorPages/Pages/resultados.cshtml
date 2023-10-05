@@ -1,15 +1,41 @@
-﻿@page "/Resultados2"
-@model IntProyectoSwRazorPages.Pages.resultados2Model
+﻿@page
+@model IntProyectoSwRazorPages.Pages.resultadosModel
 @{
 }
-
 <html>
 <head>
     <link href="css/ejercicio2.css" rel="stylesheet" />
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
+</head>
+<body>
+    <main>
+        <h1>Resultados de la encuesta de satisfacción</h1>
+        <section class="resultados">
+            <div id="chart"></div>
+            <div>
+                <h2>Total de encuestas:</h2>
+                <p id="total">0</p>
+                <h2>Puntuación del cliente:</h2>
+                <p id="puntuacion">0</p>
+            </div>
+        </section>
+    </main>
     <script type="text/javascript">
+
+        const baseURL = "https://integracion.itesrc.net/api/encuesta/resultados";
+        
+        async function descargarResultados(){
+            let response= await fetch(baseURL);
+            if(response.ok){
+              let resultados= await response.json();
+              document.getElementById("total").textContent= resultados.totalEncuestas;
+                document.getElementById("puntuacion").textContent = resultados.puntuacions.toFixed(2);
+            }
+        }
+
         google.charts.load('current', { 'packages': ['bar'], 'language': 'es' });
-        google.charts.setOnLoadCallback(drawChart);
+        google.charts.setOnLoadCallback(descargarResultados);
 
         function drawChart() {
             var data = google.visualization.arrayToDataTable([
@@ -33,20 +59,6 @@
             chart.draw(data, google.charts.Bar.convertOptions(options));
         }
     </script>
-</head>
-<body>
-    <main>
-        <h1>Resultados de la encuesta de satisfacción</h1>
-        <section class="resultados">
-            <div id="chart"></div>
-            <div>
-                <h2>Total de encuestas:</h2>
-                <p>10</p>
-                <h2>Puntuación del cliente:</h2>
-                <p>10</p>
-            </div>
-        </section>
-    </main>
 </body>
 </html>
 

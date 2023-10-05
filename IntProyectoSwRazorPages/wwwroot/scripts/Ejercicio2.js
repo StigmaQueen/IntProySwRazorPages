@@ -50,9 +50,9 @@ escala.addEventListener("click", function (e) {
     }
 });
 
-btn.addEventListener("click", function () {
+btn.addEventListener("click", async function () {
     if (seleccionado) {
-        let resp = { idPregunta: listaPreguntas[actual].id, valor: seleccionado.dataset.valor };
+        let resp = { id: listaPreguntas[actual].id, valor: seleccionado.dataset.valor };
         respuestas.push(resp);
         //verificar si quedan preguntas
         if (actual < listaPreguntas.length - 1) {
@@ -67,7 +67,16 @@ btn.addEventListener("click", function () {
             boton.hidden = true;
             loader.hidden = false;
 
-           
+            let response = await fetch(basUrl, {
+                method: "post",
+                body: JSON.stringify(respuestas),
+                headers: {
+                    "content-type":"application/json"
+                }
+            });
+            if (response.ok) {
+                window.location.href = "/Agradecimiento";
+            }
 
         }
     }
