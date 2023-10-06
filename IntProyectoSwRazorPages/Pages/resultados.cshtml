@@ -1,4 +1,4 @@
-﻿@page
+﻿@page"/Resultados"
 @model IntProyectoSwRazorPages.Pages.resultadosModel
 @{
 }
@@ -6,7 +6,7 @@
 <head>
     <link href="css/ejercicio2.css" rel="stylesheet" />
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-   
+
 </head>
 <body>
     <main>
@@ -24,32 +24,36 @@
     <script type="text/javascript">
 
         const baseURL = "https://integracion.itesrc.net/api/encuesta/resultados";
-        
-        async function descargarResultados(){
-            let response= await fetch(baseURL);
-            if(response.ok){
-              let resultados= await response.json();
-              document.getElementById("total").textContent= resultados.totalEncuestas;
+
+        async function descargarResultados() {
+            let response = await fetch(baseURL);
+            if (response.ok) {
+                let resultados = await response.json();
+                document.getElementById("total").textContent = resultados.totalEncuestas;
                 document.getElementById("puntuacion").textContent = resultados.puntuacions.toFixed(2);
-            }
+                //Operador para juntar arreglos .../
+                let datos = [
+                    ["Criterios", ...resultados.criterios.map(x => x.criterio)],
+                    ["Excelente", ...resultados.criterios.map(x => x.excelente)],
+                    ["Bueno", ...resultados.criterios.map(x => x.bueno)],
+                    ["Regular", ...resultados.criterios.map(x => x.regular)],
+                    ["Malo", ...resultados.criterios.map(x => x.malo)],
+                    ["Muy malo", ...resultados.criterios.map(x => x.muyMalo)]
+                ];
+                drawChart(datos);
+            };
         }
 
         google.charts.load('current', { 'packages': ['bar'], 'language': 'es' });
         google.charts.setOnLoadCallback(descargarResultados);
 
-        function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Año', 'Ventas', 'Gastos', 'Ganancias'],
-                ['2014', 1000, 400, 200],
-                ['2015', 1170, 460, 250],
-                ['2016', 660, 1120, 300],
-                ['2017', 1030, 540, 350]
-            ]);
+        function drawChart(datos) {
+            var data = google.visualization.arrayToDataTable(datos);
 
             var options = {
                 chart: {
-                    title: 'Rendimiento de la compañia',
-                    subtitle: 'Ventas, Gastos y Ganancias: 2014-2017',
+                    title: 'Resultados de la encuesta',
+                    subtitle: 'Ordenados por criterios',
                 },
                 bars: 'horizontal'
             };
